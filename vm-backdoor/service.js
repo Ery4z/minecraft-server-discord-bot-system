@@ -88,13 +88,3 @@ export function startService(serviceName) {
     });
 }
 
-
-// Usage example:
-const serviceName = 'YOUR_SERVICE_NAME_HERE';
-getLastTenLinesOfServiceLogs(serviceName)
-    .then(result => {
-        console.log(result);
-    })
-    .catch(error => {
-        console.error(error);
-    });
