@@ -3,10 +3,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {getServiceLogs, isServiceRunning, restartService, stopService, startService} from './service.js';
+import { Authenticate } from './authMiddleware.js';
+
 
 //Env variables
 import dotenv from 'dotenv';
 dotenv.config();
+
 
 
 const LOG_LINE_COUNT = process.env.LOG_LINE_COUNT || 10;
@@ -17,7 +20,7 @@ const SERVICE_NAME = process.env.SERVICE_NAME || 'minecraft-server.service';
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(Authenticate);
 app.get('/', (req, res) => {
     res.send('Hello World!');
 }
