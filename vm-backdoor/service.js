@@ -19,7 +19,7 @@ export  function getServiceLogs(serviceName,linecount) {
 
 export function isServiceRunning(serviceName) {
     return new Promise((resolve, reject) => {
-        exec(`systemctl is-active ${serviceName}`, (error, stdout, stderr) => {
+        exec(`sudo systemctl is-active ${serviceName}`, (error, stdout, stderr) => {
             if (error) {
                 reject(`Error checking service status: ${error.message}`);
                 return;
