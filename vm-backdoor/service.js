@@ -21,7 +21,7 @@ export function isServiceRunning(serviceName) {
     return new Promise((resolve, reject) => {
         exec(`sudo systemctl is-active ${serviceName}`, (error, stdout, stderr) => {
             if (error) {
-                reject(`Error checking service status: ${error.message}`);
+                resolve(false);
                 return;
             }
             
