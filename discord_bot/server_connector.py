@@ -1,4 +1,6 @@
 import requests
+    
+
 
 class ServerConnector:
     def __init__(self, url, port, auth_token):
@@ -20,6 +22,26 @@ class ServerConnector:
         else:
             raise Exception("Error getting server logs: " + response.text)
     
+    def post_stop_server(self):
+        response = requests.post(f"http://{self.url}:{self.port}/service/stop", headers={"Authorization": "Bearer " + self.auth_token})
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+        
+    def post_start_server(self):
+        response = requests.post(f"http://{self.url}:{self.port}/service/start", headers={"Authorization": "Bearer " + self.auth_token})
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    
+    def post_restart_server(self):
+        response = requests.post(f"http://{self.url}:{self.port}/service/restart", headers={"Authorization": "Bearer " + self.auth_token})
+        if response.status_code == 200:
+            return True
+        else:
+            return False
 
 
     def send_message(self, message):
